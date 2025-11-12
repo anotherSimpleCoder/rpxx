@@ -8,19 +8,7 @@
 
 namespace ST7789 {
     auto ST7789::init() -> void {
-        _gpio_init(cs_pin);
-        gpio_set_dir(cs_pin, true);
-        gpio_put(cs_pin, true);
-
-        _spi_init(spi_handle, 625 * 100 * 1000);
-        gpio_set_function(scl, GPIO_FUNC_SPI);
-        gpio_set_function(sda, GPIO_FUNC_SPI);
-
-        _gpio_init(reset_pin);
-        gpio_set_dir(reset_pin, GPIO_OUT);
-
-        _gpio_init(dc_pin);
-        gpio_set_dir(dc_pin, GPIO_OUT);
+        spi.init();
     }
 
     auto ST7789::reset() -> void {

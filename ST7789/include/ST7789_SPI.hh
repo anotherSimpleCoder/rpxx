@@ -25,6 +25,11 @@ namespace ST7789 {
             uint8_t dc_pin,
             uint8_t cs_pin
         ) : spi_handle(spi_handle), scl(scl), sda(sda), reset_pin(reset_pin), dc_pin(dc_pin), cs_pin(cs_pin) {}
+
+        auto init() -> void;
+        auto write(const uint8_t data) -> void;
+        auto write_multi(const uint8_t *data, uint16_t count) -> void;
+        auto get_spi_handle() -> spi_inst*;
     };
 }
 #endif //ST7789_ST7789_SPI_HH

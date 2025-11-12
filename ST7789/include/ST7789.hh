@@ -14,6 +14,9 @@ namespace ST7789 {
         uint8_t buffer[width][height][3] = {};
 
         SPI spi;
+        uint8_t reset_pin;
+        uint8_t dc_pin;
+        uint8_t cs_pin;
 
         auto reset() -> void;
         auto sleep_out() -> void;
@@ -21,14 +24,15 @@ namespace ST7789 {
         auto set_memory_access_control() -> void;
         auto turn_on_display() -> void;
     public:
-        ST7789(
+        explicit ST7789(
             spi_inst_t* spi_handle,
             uint8_t scl,
             uint8_t sda,
             uint8_t reset_pin,
             uint8_t dc_pin,
             uint8_t cs_pin
-        ): spi(spi_handle, reset_pin, dc_) {}
+        ): spi(spi_handle, scl, sda, reset_pin, dc_pin, cs_pin),
+        reset_pin(reset_pin), dc_pin(dc_pin), cs_pin(cs_pin) {}
         auto init() -> void;
         auto display_image() -> void;
     };
