@@ -4,7 +4,6 @@
 
 #ifndef ST7789_ST7789_HH
 #define ST7789_ST7789_HH
-#include "pico/stdlib.h"
 #include "ST7789_SPI.hh"
 
 namespace ST7789 {
@@ -34,7 +33,7 @@ namespace ST7789 {
         ): spi(spi_handle, scl, sda, reset_pin, dc_pin, cs_pin),
         reset_pin(reset_pin), dc_pin(dc_pin), cs_pin(cs_pin) {}
         auto init() -> void;
-        auto display_image() -> void;
+        auto render_image(const uint8_t* image) -> void;
     };
 };
 #endif //ST7789_ST7789_HH
