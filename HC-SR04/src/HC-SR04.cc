@@ -1,6 +1,12 @@
 #include "HC-SR04.hh"
 
 void HCSR04::init() const {
+    _gpio_init(trigger_pin);
+    _gpio_init(echo_pin);
+
+    gpio_set_dir(trigger_pin, true);
+    gpio_set_dir(echo_pin, false);
+
     gpio_put(trigger_pin, false);
 }
 
